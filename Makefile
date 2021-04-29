@@ -1,7 +1,13 @@
 GHC = ghc
 TARGETS := $(wildcard *.hs)
 MAIN = Main
-GFLAGS = -L/usr/lib
+GFLAGS =
+
+ifeq ($(OS), Windows_NT)
+	GFLAGS += " "
+else
+	GFLAGS += "-L/usr/lib"
+endif
 
 .PHONY: all
 all: $(MAIN)
